@@ -22,6 +22,10 @@
         height: 15vh;
         font-size: 1rem;
     }
+    reminding{
+        font-size: 0.75;
+        color: red;
+    }
 }
 
    
