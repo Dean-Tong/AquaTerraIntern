@@ -4,7 +4,7 @@ import React from 'react';
 import App from './App';
 
 // The App should render without crashing
-test('renders wihtout crashing', () => {
+test('App renders wihtout crashing', () => {
 
   const div = document.createElement('div');
   const root = createRoot(div);

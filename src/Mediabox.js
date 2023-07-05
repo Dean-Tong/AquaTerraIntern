@@ -1,5 +1,5 @@
-export default function Mediabox() {
+export default function Mediabox( {url} ) {
 
     
-    return (<p>Images</p>);
+    return (<p>{url}</p>);
 };
