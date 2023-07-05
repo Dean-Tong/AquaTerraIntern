@@ -7,7 +7,7 @@ It is available from https://nodejs.org/en/download.
 ### 'npm run build'
 To build all the dependencies for the project.
 
-#### 'npm start'
+### 'npm start'
 To Start the project on a local host.
 
 # Contributing
