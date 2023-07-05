@@ -1,21 +1,29 @@
 import { useEffect, useState } from 'react';
 import Mediabox from './Mediabox';
+import './DisplayMedia.css'
 
 
 export default function DisplayMedia() {
 
+    // fetch the links for each media box after rendered
     useEffect(() => {
 
+        // new initial link set
         const initSet = Array(8).fill(0);
+
         const fetchNewSet = async() => {
+
+            // assign each link to the set
             for (let i = 0; i < initSet.length; i++) {
 
-            
                 const response = await fetch('https://random.dog/woof.json');
                 const json = await response.json();
+
                 initSet[i] = json['url'];
 
             }
+
+            // update the media links with the new set
             setMedias(initSet);
             
 
@@ -35,8 +43,8 @@ export default function DisplayMedia() {
     return (
         <div className='displayMedia'>
 
-            <div className='mediaWall'>
-                <Mediabox url={medias[0]} />
+            <div className='grid-container'>
+                <Mediabox url={medias[0]}/>
                 <Mediabox url={medias[1]}/>
                 <Mediabox url={medias[2]}/>
                 <Mediabox url={medias[3]}/>
