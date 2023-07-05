@@ -11,15 +11,31 @@ export default function DisplayMedia() {
         // new initial link set
         const initSet = Array(8).fill(0);
 
+        
+
         const fetchNewSet = async() => {
 
             // assign each link to the set
             for (let i = 0; i < initSet.length; i++) {
-
+                while(initSet[i] === 0) {
                 const response = await fetch('https://random.dog/woof.json');
                 const json = await response.json();
 
-                initSet[i] = json['url'];
+                //check if the file is an image
+                if(imageType.includes(json['url'].split('.').pop().toLowerCase())) {
+                    initSet[i] = { 'url':json['url'], 'type': 'image'};
+
+                // check if the file is a video
+                } else if(videoType.includes(json['url'].split('.').pop().toLowerCase())) {
+                    initSet[i] = { url:json['url'], type: 'video'};
+
+                // keep fetching if it is unrecognized
+                } else {
+                    continue;
+                }
+                
+
+                }
 
             }
 
@@ -39,19 +55,25 @@ export default function DisplayMedia() {
     // store links for each mediaboxes
     const [medias, setMedias] = useState(Array(8).fill(null));
 
+    //common image type
+    const imageType = ['jpg','jpeg','jfif','pjpeg','pjp','gif','png','svg'];
+
+    //common video type
+    const videoType = ['mp4','webm'];
+
 
     return (
         <div className='displayMedia'>
 
             <div className='grid-container'>
-                <Mediabox url={medias[0]}/>
-                <Mediabox url={medias[1]}/>
-                <Mediabox url={medias[2]}/>
-                <Mediabox url={medias[3]}/>
-                <Mediabox url={medias[4]}/>
-                <Mediabox url={medias[5]}/>
-                <Mediabox url={medias[6]}/>
-                <Mediabox url={medias[7]}/>
+                <Mediabox media={medias[0]} />
+                <Mediabox media={medias[1]} />
+                <Mediabox media={medias[2]} />
+                <Mediabox media={medias[3]} />
+                <Mediabox media={medias[4]} />
+                <Mediabox media={medias[5]} />
+                <Mediabox media={medias[6]} />
+                <Mediabox media={medias[7]} />
                 
             </div>
 

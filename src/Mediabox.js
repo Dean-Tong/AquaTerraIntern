@@ -1,21 +1,35 @@
 import './Mediabox.css'
-export default function Mediabox( {url} ) {
+export default function Mediabox( {media} ) {
 
-    const imageType = ['jpg','jpeg','jfif','pjpeg','pjp','gif','png','svg'];
-    console.log(url);
-    if (!url) {
-        return <p>Loading</p>;
+   
+    
+
+    console.log(media);
+
+    // if it is the first time of rendering where no url assigned yet
+    if (!media) {
+        return <p>Loading...</p>;
     }
-    if (imageType.includes(url.split('.').pop())) {
+
+    if (media['type'] === "image") {
         return (
             <div className='grid-item'>
-                <img className='media' src={url} alt='Cannot download the file.'>
+                <img className='media' src={media['url']} alt='Cannot download the file.'>
             
                 </img>
             </div>
         );
+    } else if (media['type'] === 'video'){
+        return (
+            <div className='grid-item'>
+                <video className='media' autoPlay muted>
+                    <source src={media['url']}></source>
+                </video>
+            </div>
+
+        );
     } else {
-        return (<p>{url}</p>);
+        return <p>Error!</p>
     }
     
 };
